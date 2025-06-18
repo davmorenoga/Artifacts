@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "milib-ejemplo"
-version = "0.0.3"
+version = "0.0.4"
 description = "Una librería de prueba para Nexus"
 authors = [{ name = "David Moreno", email = "davmorenoga@ejemplo.com" }]
 requires-python = ">=3.6"
