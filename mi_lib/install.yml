@@ -1,0 +1,28 @@
+name: Test Python Package from Nexus
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependency from Nexus
+        env:
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+        run: |
+          pip install milib-ejemplo \
+            --index-url http://${NEXUS_USERNAME}:${NEXUS_PASSWORD}@ec2-54-234-135-100.compute-1.amazonaws.com:8081/repository/Mylibrarie/simple/ \
+            --trusted-host ec2-54-234-135-100.compute-1.amazonaws.com
